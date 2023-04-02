@@ -1,22 +1,19 @@
 import "./App.css";
 import React, { useState } from "react";
+import searchImage from "./img/icons8-search-24.png";
 import styled from "styled-components";
-
-const HeaderContainer = styled.header`
-  display: block;
-`;
 
 const SectionContainer = styled.section`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
 `;
 const Logo = styled.h1`
   width: 85px;
-  padding-left: 10px;
   font-size: 2rem;
   font-weight: bolder;
 `;
@@ -26,41 +23,51 @@ const FormDiv = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+const SearchImg = styled.img`
+  position: relative;
+  right: 2rem;
+  bottom: 0.3rem;
+`;
 
 const LoginDiv = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 50%;
 `;
-const LoginAndSearchDiv = styled.div`
-  display: flex;
-  width: 50%;
-  flex-direciton: row;
-  justify-content: space-around;
-`;
-
 const Form = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
   padding-top: 0.8rem;
 `;
 
 const Input = styled.input`
   padding: 10px;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 50px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
   width: 100%;
   max-width: 500px;
 `;
 
-const Button = styled.button`
+const TutuButton = styled.button`
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgb(48, 52, 65);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s, border-color 0.3s ease 0s;
+
+  &:hover {
+    background-color: #bfbfbf;
+  }
+`;
+
+const LoginButton = styled.button`
   padding: 10px;
   font-size: 16px;
   border-radius: 5px;
@@ -68,6 +75,8 @@ const Button = styled.button`
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease 0s, border-color 0.3s ease 0s;
+  margin-left: 1rem;
 
   &:hover {
     background-color: #005fa3;
@@ -75,10 +84,7 @@ const Button = styled.button`
 `;
 
 const MainDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-item: center;
-  min-witdh: 1200px;
+  min-width: 1100px;
 `;
 
 function Header() {
@@ -97,39 +103,38 @@ function Header() {
   };
 
   return (
-    <HeaderContainer>
-      <SectionContainer>
-        {/* 로고 */}
-        <Logo>tutu</Logo>
-        {/* 검색버튼 */}
-        <LoginAndSearchDiv>
-          <FormDiv>
-            <Form onSubmit={handleSubmit}>
-              <Input
-                type="text"
-                placeholder="검색어를 입력하세요"
-                value={query}
-                onChange={handleInputChange}
-              />
-              <button type="submit">Search</button>
-            </Form>
-            {results.length > 0 && (
-              <ul>
-                {results.map((result) => (
-                  <li key={result.id}>{result.title}</li>
-                ))}
-              </ul>
-            )}
-          </FormDiv>
-          {/* 회원가입 및 로그인 */}
-          <LoginDiv>
-            <Button type="button">튜터등록</Button>
-            <Button type="button">로그인</Button>
-            <Button type="button">회원가입</Button>
-          </LoginDiv>
-        </LoginAndSearchDiv>
-      </SectionContainer>
-    </HeaderContainer>
+    <SectionContainer>
+      {/* 로고 */}
+      <Logo>tutu</Logo>
+      {/* 검색버튼 */}
+      <div></div>
+      <div></div>
+      <div></div>
+      <FormDiv>
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            placeholder="검색어를 입력하세요"
+            value={query}
+            onChange={handleInputChange}
+          />
+          <SearchImg src={searchImage} alt="search" />
+        </Form>
+        {results.length > 0 && (
+          <ul>
+            {results.map((result) => (
+              <li key={result.id}>{result.title}</li>
+            ))}
+          </ul>
+        )}
+      </FormDiv>
+      {/* 회원가입 및 로그인 */}
+      <LoginDiv>
+        <TutuButton type="button">튜터등록</TutuButton>
+        <TutuButton type="button">튜터찾기</TutuButton>
+        <LoginButton type="button">로그인</LoginButton>
+      </LoginDiv>
+    </SectionContainer>
   );
 }
 
