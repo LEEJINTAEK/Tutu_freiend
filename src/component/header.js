@@ -8,7 +8,7 @@ const SectionContainer = styled.section`
   align-items: center;
   justify-content: space-between;
   width: 1200px;
-  margin: 0 auto;
+  margin: 20px auto 60px;
   padding: 0 3rem;
 `;
 const Logo = styled.h1`

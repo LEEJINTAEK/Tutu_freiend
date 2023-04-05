@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+const RankBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direcion: row;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  padding: 70px;
+`;
+const SliderText = styled.div``;
+
 const Slider = styled.div`
-  width: 70%;
+  width: 50%;
+  max-width: 900px;
+  min-width: 700px;
   height: 400px;
   overflow: hidden;
   position: relative;
-  left: 15%;
 `;
+
 const SliderImages = styled.div`
   width: ${(props) => props.width}%;
   height: 100%;
@@ -26,11 +39,11 @@ const SliderButtons = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
   z-index: 9;
+  width: 100%;
 `;
 
 const SliderButton = styled.button`
@@ -47,39 +60,51 @@ const SliderButton = styled.button`
 `;
 
 const Slide = ({ images }) => {
+  let imagesVal = Object.values(images);
+  let imagesKey = Object.keys(images);
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const width = 100 * images.length;
-  const translateX = currentIndex * (100 / images.length);
+  const width = 100 * imagesVal.length;
+  const translateX = currentIndex * (100 / imagesVal.length);
 
   const previousSlide = () => {
-    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+    setCurrentIndex(
+      currentIndex === 0 ? imagesVal.length - 1 : currentIndex - 1
+    );
   };
 
   const nextSlide = () => {
-    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+    setCurrentIndex(
+      currentIndex === imagesVal.length - 1 ? 0 : currentIndex + 1
+    );
   };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex(
-        currentIndex === images.length - 1 ? 0 : currentIndex + 1
+        currentIndex === imagesVal.length - 1 ? 0 : currentIndex + 1
       );
     }, 3000);
     return () => clearInterval(intervalId);
-  }, [currentIndex, images.length]);
+  }, [currentIndex, imagesVal.length]);
 
   return (
-    <Slider>
-      <SliderImages width={width} translateX={translateX}>
-        {images.map((image, index) => (
-          <SliderImage key={index} src={image} alt={`Slide ${index}`} />
-        ))}
-      </SliderImages>
-      <SliderButtons>
-        <SliderButton onClick={previousSlide}>이전</SliderButton>
-        <SliderButton onClick={nextSlide}>다음</SliderButton>
-      </SliderButtons>
-    </Slider>
+    <RankBox>
+      <SliderText>
+        <p>TuTu의 정보통신공학부 Best Tuter</p>
+      </SliderText>
+      <Slider>
+        <SliderImages width={width} translateX={translateX}>
+          {imagesVal.map((image, index) => (
+            <SliderImage key={index} src={image} alt={`Slide ${index}`} />
+          ))}
+        </SliderImages>
+        <SliderButtons>
+          <SliderButton onClick={previousSlide}>이전</SliderButton>
+          <SliderButton onClick={nextSlide}>다음</SliderButton>
+        </SliderButtons>
+      </Slider>
+    </RankBox>
   );
 };
 
