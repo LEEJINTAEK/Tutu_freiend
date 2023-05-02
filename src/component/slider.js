@@ -7,10 +7,23 @@ const RankBox = styled.div`
   flex-direcion: row;
   justify-content: center;
   align-items: center;
-  background-color: green;
+  background-color: #f5deb3;
   padding: 70px;
+  height: 350px;
 `;
-const SliderText = styled.div``;
+const SliderText = styled.div`
+  font-size: 30px;
+  max-width: 700px;
+  min-width: 700px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 3px black;
+  border-radius: 50px;
+  font-size: 50px;
+`;
 
 const Slider = styled.div`
   width: 50%;
@@ -90,13 +103,16 @@ const Slide = ({ images }) => {
 
   return (
     <RankBox>
-      <SliderText>
-        <p>TuTu의 정보통신공학부 Best Tuter</p>
+      <SliderText style={{ fontFamily: "Single Day" }}>
+        <p>
+          TuTu의 정보통신공학부{" "}
+          <span style={{ fontSize: "70px" }}>Best Tuter</span>
+        </p>
       </SliderText>
       <Slider>
         <SliderImages width={width} translateX={translateX}>
           {imagesVal.map((image, index) => (
-            <SliderImage key={index} src={image} alt={`Slide ${index}`} />
+            <SliderImage key={index} src={image} alt={imagesKey[index]} />
           ))}
         </SliderImages>
         <SliderButtons>

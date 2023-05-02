@@ -13,7 +13,7 @@ const SectionContainer = styled.section`
 `;
 const Logo = styled.h1`
   width: 85px;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bolder;
 `;
 
@@ -100,7 +100,7 @@ function Header() {
   return (
     <SectionContainer>
       {/* 로고 */}
-      <Logo>tutu</Logo>
+      <Logo style={{ fontFamily: "Single Day" }}>TuTu</Logo>
       {/* 검색버튼 */}
       <div></div>
       <div></div>
